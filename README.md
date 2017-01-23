@@ -1,8 +1,30 @@
 # Automatic article evaluation
 
-This module contains the evaluation classifier. It implements a machine learning based approach to learn pattern and recognize whether an article should be evaluated as 'wrong' or  not. 
+This project was developed as part of an internship at [PRIME Research](http://prime-research.com/en/). The main goal was to classify whether an article is of interest for a given company. The final product is part of a pipeline of microservices in a docker environment. It implements a machine learning based approach to learn pattern and recognize whether an article should be evaluated as 'wrong' (no match to the company) or  not. 
 
-## How to use the classifier
+The documentation below should serve as introduction for further usages.
+
+## Theoretical background
+
+The actual classification task is done by several internal algorithms which are currently straight forward combined to an ensemble of classifiers. The ensemble can be set up to do a weighted vote (the average over all confidences) or a max vote (the prediction of the classifier with the highest confidence) over the single predictions. The following algorithms are used in the ensemble:
+
+* [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier): Naive approach which assumes feature independence
+* [Random Forest](https://en.wikipedia.org/wiki/Random_forest): An ensemble of decision trees using bagging and bootstrapping
+* ~~[Stochastic Gradient Descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent): Stochastic approximation for the gradient descent optimization problem~~ 
+(removed)
+* [Logistic Regression](https://en.wikipedia.org/wiki/Logistic_regression): Builds a linear combination of the features (-variables) to predict the label
+* [Support Vector Machine](https://en.wikipedia.org/wiki/Support_vector_machine): Solves a hyperplane margin optimization problem
+
+## Technical description
+
+### Modules
+
+* `classifier_eval` contains the actual classifier as microservice
+* `my_ensembles` define the underlying classifier in the [standard sklearn fashion](http://scikit-learn.org/stable/developers/contributing.html#rolling-your-own-estimator)
+* `data_helper` provides parsing methods which are used in the classifier
+* `evaluator`, `main` and `testplot` are modules for the testing environment
+
+### How to use the classifier
 ```
 $ python2 classifier_eval.py -h
 Usage:
@@ -34,25 +56,6 @@ The configuration is as follows:
 ```
 
 
-## Theoretical background
-
-The actual classification task is done by several internal algorithms which are currently straight forward combined to an ensemble of classifiers. The ensemble can be set up to do a weighted vote (the average over all confidences) or a max vote (the prediction of the classifier with the highest confidence) over the single predictions. The following algorithms are used in the ensemble:
-
-* [Naive Bayes](https://en.wikipedia.org/wiki/Naive_Bayes_classifier): Naive approach which assumes feature independence
-* [Random Forest](https://en.wikipedia.org/wiki/Random_forest): An ensemble of decision trees using bagging and bootstrapping
-* ~~[Stochastic Gradient Descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent): Stochastic approximation for the gradient descent optimization problem~~ 
-(removed)
-* [Logistic Regression](https://en.wikipedia.org/wiki/Logistic_regression): Builds a linear combination of the features (-variables) to predict the label
-* [Support Vector Machine](https://en.wikipedia.org/wiki/Support_vector_machine): Solves a hyperplane margin optimization problem
-
-## Technical description
-
-### Modules
-
-* `classifier_eval` contains the actual classifier as microservice
-* `my_ensembles` define the underlying classifier in the [standard sklearn fashion](http://scikit-learn.org/stable/developers/contributing.html#rolling-your-own-estimator)
-* `data_helper` provides parsing methods which are used in the classifier
-* `evaluator`, `main` and `testplot` are modules for the testing environment
 
 ### How to setup the classifier
 
