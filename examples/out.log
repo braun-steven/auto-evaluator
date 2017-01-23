@@ -1,0 +1,18 @@
+Arguments: Namespace(clean='true', clf='eoc', d='data-proposal.json', n_jobs='4', s='100', t=None)
+Chosen classifier: 
+EOCClassifier(aggregate='weighted', n_jobs=1, tune_parameters=None)
+Classification report:              precision    recall  f1-score   support
+
+      wrong       0.86      0.86      0.86     17289
+      right       0.91      0.91      0.91     26828
+
+avg / total       0.89      0.89      0.89     44117
+
+Accuracy score: 0.891334406238
+Log loss: 0.284254393254
+Confusion matrix, without normalization
+[[14843  2446]
+ [ 2348 24480]]
+Normalized confusion matrix
+[[ 0.86  0.14]
+ [ 0.09  0.91]]
