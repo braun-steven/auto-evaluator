@@ -182,4 +182,7 @@ The actual goal of the classifier is to minimize the false negatives (true label
 
 The plot in `cm_ths.png` shows specificity, sensitivity, miss-rates and fall-out for all prediction probability thresholds between 0 and 1. The red line shows how the false negative rate and the blue line how the true negative rate increase with higher thresholds. Red means 'risk' for loosing a good article and blue means 'efficiency' in the filtering process of unnecessary (wrong) articles. 
 
-![Metrics ](https://raw.githubusercontent.com/primedotcom/prime_amb/master/modules/classifier_eval/examples/cm_ths.png?token=AQzw_dIZ5yaCxd6dkAnYoIlGtjRq0KsFks5YAJqwwA%3D%3D)
+![Metrics ](https://github.com/slang03/auto-evaluator/blob/master/examples/cm_ths.png)
+
+## Copyright
+The files are intellectual property of [PRIME Research](http://prime-research.com/en/)
